@@ -1,16 +1,20 @@
+import { useSelector } from 'react-redux';
+import { Container, MainHeader, SubHeader } from './App.styled';
+import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
+import { Loader } from './Loader/Loader';
+
 export const App = () => {
+  const loader = useSelector( state => state.contacts.isLoading);
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Container>
+      {loader && <Loader />}
+      <MainHeader>Phonebook</MainHeader>
+      <ContactForm />
+      <SubHeader>Contacts</SubHeader>
+      <Filter />
+      <ContactList />
+    </Container>
   );
 };
